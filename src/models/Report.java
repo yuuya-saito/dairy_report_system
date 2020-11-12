@@ -25,6 +25,38 @@ import javax.persistence.Table;
             name = "getReportsCount",
             query = "SELECT COUNT(r) FROM Report AS r"
             ),
+    @NamedQuery(
+            name = "getSearchResultEmployee_id",
+            query = "SELECT r FROM Report AS r JOIN r.employee e WHERE e.id = :keyword ORDER BY r.updated_at DESC"
+            ),
+    @NamedQuery(
+            name = "getSearchResultEmployee_idCount",
+            query = "SELECT COUNT(r) FROM Report AS r JOIN r.employee e WHERE e.id = :keyword "
+            ),
+    @NamedQuery(
+            name = "getSearchResultTitle",
+            query = "SELECT r FROM Report AS r WHERE r.title LIKE :keyword ORDER BY r.updated_at DESC"
+            ),
+    @NamedQuery(
+            name = "getSearchResultTitleCount",
+            query = "SELECT COUNT(r) FROM Report AS r WHERE r.title LIKE :keyword "
+            ),
+    @NamedQuery(
+            name = "getSearchResultContent",
+            query = "SELECT r FROM Report AS r WHERE r.content LIKE :keyword ORDER BY r.updated_at DESC"
+            ),
+    @NamedQuery(
+            name = "getSearchResultContentCount",
+            query = "SELECT COUNT(r) FROM Report AS r WHERE r.content LIKE :keyword "
+            ),
+    @NamedQuery(
+            name = "getEmployeeName",
+            query = "SELECT r FROM Report r JOIN r.employee e  WHERE e.name LIKE :keyword ORDER BY e.id DESC"
+            ),
+    @NamedQuery(
+            name = "getEmployeeNameCount",
+            query = "SELECT COUNT(r) FROM Report r JOIN r.employee e  WHERE e.name LIKE :keyword"
+            )
 })
 @Entity
 public class Report {

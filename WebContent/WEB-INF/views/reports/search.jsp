@@ -8,9 +8,19 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>日報　一覧</h2>
+        <h2>日報　検索結果</h2>
             <form method="get" action="<c:url value='/reports/search' />">
                 <p>検索ワード: <input type="text" name="result"></p>
+                    <c:if test="${err == 1}">
+                        <div id="search_error">
+                        社員番号を検索する場合は数字で入力してください。<br />
+                        </div>
+                    </c:if>
+                    <c:if test="${err == 2}">
+                        <div id="search_error">
+                        検索条件を指定してください。<br />
+                        </div>
+                    </c:if>
                 <p>検索条件:
                     <input type="radio" name="columnName" value="employee_id"> 社員番号
                     <input type="radio" name="columnName" value="name"> 氏名
@@ -26,7 +36,6 @@
                     <th class="report_name">氏名</th>
                     <th class="report_date">日付</th>
                     <th class="report_title">タイトル</th>
-                    <th class="report_like">いいね</th>
                     <th class="report_action">操作</th>
                 </tr>
                 <c:forEach var="report" items="${reports}" varStatus="status">
@@ -35,15 +44,6 @@
                         <td class="report_name"><c:out value="${report.employee.name}" /></td>
                         <td class="report_date"><fmt:formatDate value='${report.report_date}' pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>
-                        <td class="report_like">
-                            <form method="post" action="<c:url value='/reports/like' />">
-                                <p>
-                                    <input <%--type="hidden"--%> name="employee_id" value="${sessionScope.login_employee.id}">
-                                    <input <%--type="hidden"--%> name="report_id" value="${report.id}">
-                                </p>
-                                <input type="submit" value="いいね">
-                            </form>
-                        </td>
                         <td class="report_action"><a href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
                     </tr>
                 </c:forEach>

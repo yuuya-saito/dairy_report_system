@@ -139,22 +139,33 @@ table#report_list th {
     padding: 10px 2%;
 }
 
+table#report_list .report_employee_id{
+    width: 7%;
+}
+
 table#report_list .report_name {
     width: 20%;
     padding: 10px 2%;
 }
 table#report_list .report_date {
-    width: 20%;
+    width: 16%;
 }
 
 table#report_list .report_title {
-    width: 37%;
+    width: 25%;
 }
 
 table#report_list .report_action {
-    width: 13%;
+    width: 15%;
+}
+
+table#report_list .report_like {
+    width: 9%;
 }
 
 pre {
     font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+}
+#search_error {
+    color: #721c24;
 }
