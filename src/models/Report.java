@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name = "getAllReports",
-            query = "SELECT r FROM Report AS r ORDER BY r.id DESC"
+            query = "SELECT r FROM Report AS r ORDER BY r.updated_at DESC"
             ),
     @NamedQuery(
             name = "getReportsCount",
@@ -51,12 +51,12 @@ import javax.persistence.Table;
             ),
     @NamedQuery(
             name = "getEmployeeName",
-            query = "SELECT r FROM Report r JOIN r.employee e  WHERE e.name LIKE :keyword ORDER BY e.id DESC"
+            query = "SELECT r FROM Report r JOIN r.employee e  WHERE e.name LIKE :keyword ORDER BY r.updated_at DESC"
             ),
     @NamedQuery(
             name = "getEmployeeNameCount",
             query = "SELECT COUNT(r) FROM Report r JOIN r.employee e  WHERE e.name LIKE :keyword"
-            )
+            ),
 })
 @Entity
 public class Report {
@@ -84,6 +84,7 @@ public class Report {
 
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
+
 
     public Integer getId() {
         return id;

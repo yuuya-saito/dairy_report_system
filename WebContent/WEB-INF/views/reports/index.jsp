@@ -26,9 +26,10 @@
                     <th class="report_name">氏名</th>
                     <th class="report_date">日付</th>
                     <th class="report_title">タイトル</th>
-                    <th class="report_like">いいね</th>
+                    <th class="report_like">GoodJob</th>
                     <th class="report_action">操作</th>
                 </tr>
+
                 <c:forEach var="report" items="${reports}" varStatus="status">
                     <tr class="row${status.count % 2}">
                         <td class="report_employee_id"><c:out value="${report.employee.id}" /></td>
@@ -36,13 +37,6 @@
                         <td class="report_date"><fmt:formatDate value='${report.report_date}' pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>
                         <td class="report_like">
-                            <form method="post" action="<c:url value='/reports/like' />">
-                                <p>
-                                    <input <%--type="hidden"--%> name="employee_id" value="${sessionScope.login_employee.id}">
-                                    <input <%--type="hidden"--%> name="report_id" value="${report.id}">
-                                </p>
-                                <input type="submit" value="いいね">
-                            </form>
                         </td>
                         <td class="report_action"><a href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
                     </tr>
